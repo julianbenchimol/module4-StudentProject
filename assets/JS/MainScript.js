@@ -8,7 +8,8 @@
 //!Done
 //TODO: Assign the key to a variabe and check if the variable is contained within the chosen word
 //!DONE
-//TODO: If the pressed key is in, reveal it, otherwise take a life
+//TODO: If the pressed key is in, reveal it
+//!Done
 //TODO: Update word-view, timer-element, wins & losses to reflect game choices
 //TODO: Display a win/loss message when the word is guessed or the timer runs out/runs out of lives
 //TODO: Track wins and losses in local storage
@@ -22,9 +23,8 @@ var wordBlankArray = new Array();
 var gameStarted = false;
 
 //Gameplay Variables
-var wins = 0;
-var losses = 0;
-var lives = 5; 
+var wins = localStorage.getItem("wins");
+var losses = localStorage.getItem("losses");
 var timeLeft = 20;
 var guessedLetters = Array();
 var playerWord = Array();
@@ -34,7 +34,8 @@ var playerWord = Array();
 var startButton = document.querySelector("#start-game");
 var timeElement = document.querySelector("#timer");
 var wordElement = document.querySelector("#word-view");
-var keyElement = document.querySelector("#key");
+var winElement = document.querySelector("#wins");
+var loseElement = document.querySelector("#losses");
 
 startButton.addEventListener("click", InitializeGame);
 
@@ -45,6 +46,7 @@ document.addEventListener("keydown", KeyDownAction);
 //!WORKING
 function InitializeGame(){
     if(!gameStarted){
+
     //Logs when button is pressed 
     //!(working)
     console.log('Game initializing');
@@ -111,9 +113,6 @@ function KeyDownAction(event){
         //gets the key and key code from the event
         var key = event.key.toLowerCase();
 
-        //updates the key element with the pressed key 
-        keyElement.textContent = key;
-
         //Checks the array if the key pressed is present
         for (var i = 0; i < wordArray.length; i ++){
             //if the key is present, then it will add it to an array
@@ -129,4 +128,27 @@ function KeyDownAction(event){
     else {
         alert("Game Hasn't Started!");
     }
+}
+
+function EndGame(){
+
+    var correctWord = word.toLowerCase();
+    wordBlank = wordBlank.replace(/ /g, "");
+
+    wins = localStorage.getItem("wins");
+    losses = localStorage.getItem("losses");
+
+    if(correctWord === wordBlank){
+        console.log("correct word!")
+        wins++;
+        winElement.textContent = wins;
+    } 
+    else {
+        console.log("wrong word!");
+        losses++;
+        loseElement.textContent = losses;
+    }
+
+    localStorage.setItem("wins", wins);
+    localStorage.setItem("losses", losses);
 }
