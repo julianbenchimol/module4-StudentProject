@@ -1,19 +1,3 @@
-//TODO: Start Game runs InitializeGame()
-//!Done
-//TODO: Initialize game renders the blanked out word
-//!Done
-//TODO: Create a timer for 20s that updates in real time
-//!Done
-//TODO: Get key down to check what key is pressed
-//!Done
-//TODO: Assign the key to a variabe and check if the variable is contained within the chosen word
-//!DONE
-//TODO: If the pressed key is in, reveal it
-//!Done
-//TODO: Update word-view, timer-element, wins & losses to reflect game choices
-//TODO: Display a win/loss message when the word is guessed or the timer runs out/runs out of lives
-//TODO: Track wins and losses in local storage
-
 //Initialize Variables
 var possibleWords = ["JavaScript", "CSS", "HTML", "GitHub"];
 var word = "";
@@ -21,30 +5,35 @@ var wordArray = [];
 var wordBlank = "";
 var wordBlankArray = new Array();
 var gameStarted = false;
+var endText = '';
 
 //Gameplay Variables
-var wins = localStorage.getItem("wins");
-var losses = localStorage.getItem("losses");
-var timeLeft = 20;
-var guessedLetters = Array();
-var playerWord = Array();
-
+var wins = localStorage.setItem("wins", 0);
+var losses = localStorage.setItem("losses", 0);
+var timeLeft = 5;
 
 //HTML Elements
 var startButton = document.querySelector("#start-game");
+var resetButton = document.querySelector("#reset-button");
 var timeElement = document.querySelector("#timer");
 var wordElement = document.querySelector("#word-view");
 var winElement = document.querySelector("#wins");
 var loseElement = document.querySelector("#losses");
+var endTextElement = document.querySelector("#end-text");
 
+//Event Listeners
 startButton.addEventListener("click", InitializeGame);
-
-//Gets key Input and displays it on the page
+resetButton.addEventListener("click", ResetScore);
 document.addEventListener("keydown", KeyDownAction);
 
+ResetGame();
 //Initializes the game
 //!WORKING
 function InitializeGame(){
+    ResetGame();
+    winElement.textContent = wins;
+    loseElement.textContent = losses;
+
     if(!gameStarted){
 
     //Logs when button is pressed 
@@ -129,7 +118,8 @@ function KeyDownAction(event){
         alert("Game Hasn't Started!");
     }
 }
-
+//Ends the game and checks win or loss
+//!WORKING
 function EndGame(){
 
     var correctWord = word.toLowerCase();
@@ -139,16 +129,41 @@ function EndGame(){
     losses = localStorage.getItem("losses");
 
     if(correctWord === wordBlank){
-        console.log("correct word!")
         wins++;
         winElement.textContent = wins;
-    } 
+        endText = "You Won!"
+   } 
     else {
-        console.log("wrong word!");
         losses++;
         loseElement.textContent = losses;
-    }
+        endText = "You Lose!"
+   }
 
     localStorage.setItem("wins", wins);
     localStorage.setItem("losses", losses);
+
+    endTextElement.textContent = endText;
+}
+
+function ResetGame(){
+    word = "";
+    wordArray = [];
+    wordBlank = "";
+    wordBlankArray = new Array();
+    gameStarted = false;
+    timeLeft = 5;
+    timeElement.textContent = timeLeft + "s";
+    endText = "";
+    endTextElement.textContent = endText;
+}
+
+function ResetScore(){
+    localStorage.setItem("wins", 0);
+    localStorage.setItem("losses", 0);
+
+    wins = localStorage.getItem("wins");
+    winElement.textContent = wins;
+
+    losses = localStorage.getItem("losses");
+    loseElement.textContent = losses;
 }
