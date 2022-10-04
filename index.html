@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>Hangman</title>
+  </head>
+
+
+<body>
+    <div class="wrapper">
+        <h1>Hangman</h1>
+        <h2>Vanilla JavaScript Hangman Game</h2>
+        <p>Use the alphabet below to guess the word, or click hint to get a clue. </p>
+    </div>
+    <div class="wrapper">
+        <div id="buttons"></div>
+        <p id="catagoryName"></p>
+        <div id="hold"></div>
+        <p id="mylives"></p>
+        <p id="clue">Clue -</p>
+        <span id="stickman"></span>
+        <div class="container">
+            <button id="hint">Hint</button>
+            <button id="reset">Play again</button>
+        </div>
+    </div>
+    <script src="./assets/JS/MainScript.js"></script>
+</body>
