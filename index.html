@@ -17,12 +17,14 @@
     <main>
 
       <!--Shows the main word that was chosen within a card-->
-      <div class = "card" id = "word-view">This is where the main word will be shown.</div>
+      <div>The word is:  </div> 
+      <div class = "card" id = "word-view"></div>
 
       <!--Shows the wins, losses, seconds remaining-->
       <section class = "card">
         <div id = "score-card">This is where the score will be shown.</div>
-        <div id = "timer-text">Time Left: </div> <div id = "timer"></div> <!--!This needs to be inline-->
+        <div id = "timer-text">Time Left:</div> 
+        <div id = "timer">20s</div> <!--!This needs to be inline-->
         <div id = "lives">These are the lives</div>
         <div class = "score"> Wins: 0</div>
         <div class = "score"> Losses: 0</div>
@@ -30,7 +32,10 @@
 
       <!--Section to hold all the wrongly guessed letters-->
       <section class = "card">
-        <div id = "letter-bank">This is where the guessed letters go</div>
+        <div id = "letter-bank">
+          Keys Guessed: <div id = "key"></div> <!--!Needs to be Inline-->
+
+        </div>
       </section>
       <!--The reset button for the score-->
       <button class = "game-button" id = "reset-button"> Reset the Score</button>
