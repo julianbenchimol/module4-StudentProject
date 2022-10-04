@@ -118,6 +118,7 @@ function KeyDownAction(event){
         alert("Game Hasn't Started!");
     }
 }
+
 //Ends the game and checks win or loss
 //!WORKING
 function EndGame(){
@@ -145,6 +146,8 @@ function EndGame(){
     endTextElement.textContent = endText;
 }
 
+//Resets values for the game
+//!Working
 function ResetGame(){
     word = "";
     wordArray = [];
@@ -157,6 +160,8 @@ function ResetGame(){
     endTextElement.textContent = endText;
 }
 
+//Resets the score in local storage 
+//!Working
 function ResetScore(){
     localStorage.setItem("wins", 0);
     localStorage.setItem("losses", 0);
