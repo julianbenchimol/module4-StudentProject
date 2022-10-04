@@ -1,3 +1,5 @@
+//!Issue: Fix bug with timer starting multiple intervals
+
 //Initialize Variables
 var possibleWords = ["JavaScript", "CSS", "HTML", "GitHub"];
 var word = "";
@@ -26,15 +28,12 @@ startButton.addEventListener("click", InitializeGame);
 resetButton.addEventListener("click", ResetScore);
 document.addEventListener("keydown", KeyDownAction);
 
-ResetGame();
 //Initializes the game
 //!WORKING
 function InitializeGame(){
     ResetGame();
     winElement.textContent = wins;
     loseElement.textContent = losses;
-
-    if(!gameStarted){
 
     //Logs when button is pressed 
     //!(working)
@@ -65,10 +64,6 @@ function InitializeGame(){
     wordElement.textContent = wordBlank;
 
     SetTime();
-    }
-    else {
-        alert("Game has already started!");
-    }
     
 }
 
@@ -149,15 +144,17 @@ function EndGame(){
 //Resets values for the game
 //!Working
 function ResetGame(){
-    word = "";
-    wordArray = [];
-    wordBlank = "";
-    wordBlankArray = new Array();
-    gameStarted = false;
-    timeLeft = 5;
-    timeElement.textContent = timeLeft + "s";
-    endText = "";
-    endTextElement.textContent = endText;
+    if(gameStarted){
+        gameStarted = false;
+        word = "";
+        wordArray = [];
+        wordBlank = "";
+        wordBlankArray = new Array();
+        timeLeft = 5;
+        timeElement.textContent = timeLeft + "s";
+        endText = "";
+        endTextElement.textContent = endText;
+    }
 }
 
 //Resets the score in local storage 

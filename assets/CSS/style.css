@@ -1,2 +1,63 @@
-/*TODO: Things to style:*/
-/*TODO: Header, Game Cards (with flex boxes), Game Buttons, Main Content, Pretty Much Everything*/
+:root{
+    --headerBackground: #1b252e;
+    --headerColor: #fff;
+
+    --bodyBackground: #75A1C7;
+    --bodyColor: #000;
+
+    --cardBackground: #7a5e30;
+    --cardColor: #2e271b;
+
+    --buttonBackground: #777a42;
+    --buttonColor: #2c2e16;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+/*Main Header Styling */
+#main-header {
+    width: 100%;
+    height: 125px;
+
+    background-color: var(--headerBackground);
+    color: var(--headerColor);
+
+    text-align: center;
+}
+h1 {
+    font-size: 40px;
+}
+#start-game{
+    width: 200px;
+    height: 50px;
+
+    margin-top: 10px;
+    font-size: 32px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+/*===================*/
+
+/* Body Styling */
+body {
+    background-color: var(--bodyBackground);
+    color: var(--bodyColor)
+}
+
+h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 10px;
+}
+
+#word-view {
+    text-align: center;
+    font-size: 32px;
+}
